@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  ubuntu:
+    build: .
+    volumes:
+      - ./nginx:/etc/nginx
+      - ./demopage:/sites/demo
+    ports:
+      - "80:80"
+
+volumes:
+  nginx:
+  demopage:
