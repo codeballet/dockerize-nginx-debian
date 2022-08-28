@@ -1,9 +1,21 @@
-FROM ubuntu:20.04
-RUN apt-get update && apt-get install -y vim
-RUN apt-get install -y build-essential
-RUN apt-get install -y wget && apt-get install -y tar
-RUN apt-get install -y libpcre3 libpcre3-dev zlib1g zlib1g-dev libssl-dev
+FROM debian:11.4-slim
+
+# Install software and dependencies
+RUN apt-get update && apt-get install -y \
+    vim \
+    build-essential \
+    wget \
+    tar \
+    libpcre3 \
+    libpcre3-dev \
+    zlib1g \
+    zlib1g-dev \
+    libssl-dev
+
+# Download nginx
 RUN wget http://nginx.org/download/nginx-1.23.1.tar.gz && tar -zxvf nginx-1.23.1.tar.gz
+
+# Configure and install nginx
 WORKDIR /nginx-1.23.1/
 RUN ./configure \
     --sbin-path=/usr/bin/nginx \
@@ -14,5 +26,7 @@ RUN ./configure \
     --pid-path=/var/run/nginx.pid \
     --with-http_ssl_module
 RUN make && make install
+
 WORKDIR /
-CMD [ "nginx", "-g", "daemon off;" ]
+# Start nginx
+# CMD [ "nginx", "-g", "daemon off;" ]
