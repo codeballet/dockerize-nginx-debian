@@ -16,3 +16,17 @@ openssl dhparam -out /etc/nginx/ssl/dhparam.pem 4096
 ```
 
 SSL cipher suits for the Nginx `ssl_ciphers` configuration are sourced from [https://www.ssl.com/guide/tls-standards-compliance/](https://www.ssl.com/guide/tls-standards-compliance/).
+
+## Rate limiting
+
+The tool used for testing rate limiting is [Siege](https://www.joedog.org/siege-home/).
+For instance, a test may be executed as:
+
+```
+siege -v -r 2 -c 5 https://localhost/screenshot.jpg
+```
+
+Here are some articles about rate limiting for Nginx:
+
+- [https://www.nginx.com/blog/rate-limiting-nginx/](https://www.nginx.com/blog/rate-limiting-nginx/)
+- [https://www.freecodecamp.org/news/nginx-rate-limiting-in-a-nutshell-128fe9e0126c](https://www.freecodecamp.org/news/nginx-rate-limiting-in-a-nutshell-128fe9e0126c)

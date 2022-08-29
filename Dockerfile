@@ -26,7 +26,8 @@ RUN ./configure \
     --pid-path=/var/run/nginx.pid \
     --with-http_ssl_module \
     --with-http_v2_module \
-    --modules-path=/etc/nginx/modules
+    --modules-path=/etc/nginx/modules \
+    --without-http_autoindex_module
 RUN make && make install
 
 WORKDIR /
